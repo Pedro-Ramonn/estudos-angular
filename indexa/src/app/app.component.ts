@@ -4,6 +4,7 @@ import { RouterOutlet } from '@angular/router';
 import { ContainerComponent } from './components/container/container.component';
 import { CabecalhoComponent } from './components/cabecalho/cabecalho.component';
 import { SeparadorComponent } from './components/separador/separador.component';
+import { ContatosComponent } from './components/contatos/contatos.component';
 
 @Component({
   selector: 'app-root',
@@ -14,6 +15,7 @@ import { SeparadorComponent } from './components/separador/separador.component';
     ContainerComponent,
     CabecalhoComponent,
     SeparadorComponent,
+    ContatosComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
