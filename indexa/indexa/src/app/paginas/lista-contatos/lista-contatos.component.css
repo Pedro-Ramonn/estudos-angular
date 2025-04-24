@@ -1,0 +1,45 @@
+input {
+    border-radius: 4px;
+    border: 1px solid #CED4DA;
+    width: 100%;
+    margin: 40px 0;
+    padding: 6px 12px;
+    color: #6C757D;
+    font-family: 'Montserrat';
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%;
+}
+
+.botoes {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .botao-cancelar, .botao-salvar, .botao-desabilitado {
+    width: 196px;
+    height: 41px;
+    padding: 6px, 12px;
+    border-radius: 4px;
+    border: 1px;
+    gap: 8px;
+    font-family: 'Montserrat';
+    font-size: 18px;
+    font-weight: 700;
+    text-align: center;
+  }
+  
+  .botao-cancelar {
+    color:#0D6EFD;
+    background-color: #FFFFFF;
+    border: 1px solid #0D6EFD;
+    cursor: pointer;
+  
+  }
+  
+  .botao-salvar {
+    color:#FFFFFF;
+    background-color: #0D6EFD;
+    cursor: pointer;
+  }

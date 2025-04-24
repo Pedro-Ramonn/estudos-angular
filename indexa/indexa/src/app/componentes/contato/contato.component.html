@@ -3,12 +3,12 @@
     <li><strong>{{ nome }}</strong></li>
     <li>{{ telefone }}</li>
     <li>
-      <button>
+      <button (click)="editarContato()">
         <img src="assets/pencil-square.png" />
       </button>
     </li>
     <li>
-      <button>
+      <button (click)="deletarContato()">
         <img src="assets/trash.png" />
       </button>
     </li>
