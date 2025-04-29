@@ -9,7 +9,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { ContatoService } from '../../services/contato.service';
 
 @Component({
@@ -29,10 +29,24 @@ import { ContatoService } from '../../services/contato.service';
 export class FormularioContatoComponent implements OnInit {
   contatoForm!: FormGroup;
 
-  constructor(private contatoService: ContatoService) {}
+  constructor(
+   private contatoService: ContatoService,
+   private router: Router,
+   private activatedRoute: ActivatedRoute,
+  ) {}
 
   ngOnInit() {
     this.inicializarFormulario();
+    this.carregarContato();
+  }
+
+  public carregarContato(){
+    const id = this.activatedRoute.snapshot.paramMap.get('id'); //pega o id da rota
+    if (id) {
+      this.contatoService.obterContatoPorId(Number(id)).subscribe((contato) => {
+        this.contatoForm.patchValue(contato); //preenche o formulário com os dados do contato
+      });
+    }
   }
 
   public inicializarFormulario() {
@@ -47,10 +61,15 @@ export class FormularioContatoComponent implements OnInit {
   }
 
   public salvarContato() {
-    if (this.contatoForm.valid) {
-      const novoContato = this.contatoForm.value;
-      this.contatoService.SalvarContato(novoContato);
-    }
+    const novoContato = this.contatoForm.value; //pega os valores do formulário
+    const id = this.activatedRoute.snapshot.paramMap.get('id'); //pega o id da rota
+    if (id) {
+      novoContato.id = Number(id); //adiciona o id ao contato
+    } else { novoContato.id = null; } //se não tiver id, adiciona null
+    this.contatoService.editarOuSalvarContato(novoContato).subscribe(() => {
+      this.contatoForm.reset(); //reseta o formulário
+      this.router.navigate(['/contatos']); //redireciona para a página de contatos
+    });
   }
 
   public cancelar() {

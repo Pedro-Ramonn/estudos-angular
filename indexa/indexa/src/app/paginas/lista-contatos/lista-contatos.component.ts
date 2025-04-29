@@ -7,11 +7,16 @@ import { ContatoComponent } from '../../componentes/contato/contato.component';
 import { FormularioContatoComponent } from '../formulario-contato/formulario-contato.component';
 import { RouterLink } from '@angular/router';
 import { ContatoService } from '../../services/contato.service';
+import { PerfilContatoComponent } from '../perfil-contato/perfil-contato.component';
 
 export interface Contato {
-  id?: number;
-  nome: string;
-  telefone: string;
+  id?: number
+  nome: string
+  telefone: string
+  email: string
+  aniversario?: string
+  redes?: string
+  observacoes?: string
 }
 
 @Component({
@@ -25,6 +30,8 @@ export interface Contato {
     FormsModule,
     FormularioContatoComponent,
     RouterLink,
+    ListaContatosComponent,
+    PerfilContatoComponent,
   ],
   templateUrl: './lista-contatos.component.html',
   styleUrl: './lista-contatos.component.css',
@@ -39,7 +46,9 @@ export class ListaContatosComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.contatos = this.contatoService.obterContatos();
+    this.contatoService.obterContatos().subscribe(listaDeContatos => {
+      this.contatos = listaDeContatos
+    });
   }
 
   public filtrarContatosPorTexto(): Contato[] {

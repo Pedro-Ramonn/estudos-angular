@@ -1,16 +1,16 @@
 <section class="contato">
   <ul>
-    <li><strong>{{ nome }}</strong></li>
-    <li>{{ telefone }}</li>
-    <li>
-      <button (click)="editarContato()">
-        <img src="assets/pencil-square.png" />
-      </button>
-    </li>
-    <li>
-      <button (click)="deletarContato()">
-        <img src="assets/trash.png" />
-      </button>
-    </li>
+      <li>
+          <strong>{{ nome }}</strong>
+      </li>
+      <li>{{ telefone }}</li>
+      <li>
+          <button [routerLink]="['/formulario', id]">
+              <img src="/assets/pencil-square.png" alt="">
+          </button>
+          <button [routerLink]="['/perfil-contato', id]">
+              <img src="/assets/trash.png" alt="">
+          </button>
+      </li>
   </ul>
 </section>
